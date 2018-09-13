@@ -1,4 +1,4 @@
-let url = 'http://localhost:3000/';
+var url = 'http://149.129.136.231:3000/';
 
 function makeCall(theUrl, callback)
 {
@@ -17,13 +17,13 @@ function checkForIsSet(callback){
             console.log(res);
             if(res == 'set'){
                 //window.location.replace("home.html");
-                window.location.replace("http://localhost:3000");
+                window.location.replace("http://149.129.136.231:3000");
             }
         }
     })
 }
-let checkLoginInterval = setInterval(checkForIsSet,400);
-let codechefLogin = () => {
-    window.open(`https://api.codechef.com/oauth/authorize?response_type=code&client_id=de158fa6b9535c57960cbe0de83a15fa&state=xyz&redirect_uri=http://localhost:3000/getOAuthToken`);
+var checkLoginInterval = setInterval(checkForIsSet,400);
+var codechefLogin = () => {
+    window.open(`https://api.codechef.com/oauth/authorize?response_type=code&client_id=de158fa6b9535c57960cbe0de83a15fa&state=xyz&redirect_uri=http://149.129.136.231:3000/getOAuthToken`);
     //checkForIsSet();
 }

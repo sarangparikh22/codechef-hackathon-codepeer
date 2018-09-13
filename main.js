@@ -2,7 +2,7 @@ const {app, BrowserWindow, Menu,session} = require('electron')
 var path = require('path')
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
-  let win
+  var win
   
   function createWindow () {
     // Create the browser window.
@@ -23,7 +23,7 @@ var path = require('path')
       // when you should delete the corresponding element.
       win = null
     })
-    let menu = Menu.buildFromTemplate([
+    var menu = Menu.buildFromTemplate([
       {
         label: "File",
         submenu: [

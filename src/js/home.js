@@ -1,10 +1,10 @@
 const request = require('request');
-let accessToken;
-let refreshToken;
+var accessToken;
+var refreshToken;
 window.addEventListener('load',()=>{
    
     request.get({
-        url: 'http://localhost:3000/fetchAccessToken'
+        url: 'http://149.129.136.231:3000/fetchAccessToken'
     }, function(error, response, body){
         console.log(body);
         accessToken = JSON.parse(body).a;
@@ -17,9 +17,9 @@ window.addEventListener('load',()=>{
 
 function getUserName(){
     request.get({
-        url: `http://localhost:3000/getUserName?accessToken=${accessToken}`
+        url: `http://149.129.136.231:3000/getUserName?accessToken=${accessToken}`
     }, function(error, response, body){
-        let userName = JSON.parse(body).result.data.content.fullname;
+        var userName = JSON.parse(body).result.data.content.fullname;
         document.getElementById('loading').style.display = "none";
         document.getElementById('welcome-message').innerHTML = `<h3>Welcome, ${userName}</h3>`;
         console.log(userName);
@@ -27,13 +27,19 @@ function getUserName(){
     }) 
 }
 
-let output;
-    let sr;
+var output;
+    var sr;
     function match(){
     document.getElementById('matchButton').style.display = "none";
+<<<<<<< HEAD
     document.getElementById('problem').innerHTML = `<img src="./assets/img/loader.gif" height="20%" width="20%">`;
     let socket = io();
     let socID;
+=======
+    document.getElementById('problem').innerHTML = `Matching...`;
+    var socket = io();
+    var socID;
+>>>>>>> 363b7a4004347f357037d781b62660ad82f94968
     socket.on('connect',(test)=>{
         console.log('Received Some Shit');
         console.log(socket.id);
