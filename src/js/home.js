@@ -31,15 +31,9 @@ var output;
     var sr;
     function match(){
     document.getElementById('matchButton').style.display = "none";
-<<<<<<< HEAD
     document.getElementById('problem').innerHTML = `<img src="./assets/img/loader.gif" height="20%" width="20%">`;
     let socket = io();
     let socID;
-=======
-    document.getElementById('problem').innerHTML = `Matching...`;
-    var socket = io();
-    var socID;
->>>>>>> 363b7a4004347f357037d781b62660ad82f94968
     socket.on('connect',(test)=>{
         console.log('Received Some Shit');
         console.log(socket.id);
