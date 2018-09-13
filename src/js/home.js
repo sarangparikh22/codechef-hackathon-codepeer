@@ -4,7 +4,7 @@ let refreshToken;
 window.addEventListener('load',()=>{
    
     request.get({
-        url: 'http://localhost:3000/fetchAccessToken'
+        url: 'http://149.129.136.231:3000/fetchAccessToken'
     }, function(error, response, body){
         console.log(body);
         accessToken = JSON.parse(body).a;
@@ -17,7 +17,7 @@ window.addEventListener('load',()=>{
 
 function getUserName(){
     request.get({
-        url: `http://localhost:3000/getUserName?accessToken=${accessToken}`
+        url: `http://149.129.136.231:3000/getUserName?accessToken=${accessToken}`
     }, function(error, response, body){
         let userName = JSON.parse(body).result.data.content.fullname;
         document.getElementById('loading').style.display = "none";
