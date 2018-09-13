@@ -1,6 +1,6 @@
 const request = require('request');
-let accessToken;
-let refreshToken;
+var accessToken;
+var refreshToken;
 window.addEventListener('load',()=>{
    
     request.get({
@@ -19,20 +19,20 @@ function getUserName(){
     request.get({
         url: `http://149.129.136.231:3000/getUserName?accessToken=${accessToken}`
     }, function(error, response, body){
-        let userName = JSON.parse(body).result.data.content.fullname;
+        var userName = JSON.parse(body).result.data.content.fullname;
         document.getElementById('loading').style.display = "none";
         document.getElementById('welcome-message').innerHTML = `Welcome ${userName}`;
         console.log(userName);
     }) 
 }
 
-let output;
-    let sr;
+var output;
+    var sr;
     function match(){
     document.getElementById('matchButton').style.display = "none";
     document.getElementById('problem').innerHTML = `Matching...`;
-    let socket = io();
-    let socID;
+    var socket = io();
+    var socID;
     socket.on('connect',(test)=>{
         console.log('Received Some Shit');
         console.log(socket.id);

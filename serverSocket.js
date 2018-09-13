@@ -12,21 +12,21 @@ var io = socketio(server);
 app.use(ex.static(pubPath));
 app.set('view engine','hbs')
 app.use(bodyParser.urlencoded({ extended: false}));
-let matching = [];
-let rooms = [];
+var matching = [];
+var rooms = [];
 /////////////////////////////////////////////////////////////////////////////////////////////////
-let grantAccessCode;
-let accessToken;
-let refreshToken;
-let activated;
-let started;
+var grantAccessCode;
+var accessToken;
+var refreshToken;
+var activated;
+var started;
 
 app.get('/getOAuthToken',(req,res) =>{
     console.log('Grant Access Code',req.param('code'));
     grantAccessCode = req.param('code');
     getOAuthToken((r)=>{
         if(r){
-            res.send(`<script>const fs = require('fs');const remote = require('electron').remote;let w = remote.getCurrentWindow();w.close();</script>`);
+            res.send(`<script>const fs = require('fs');const remote = require('electron').remote;var w = remote.getCurrentWindow();w.close();</script>`);
         }
     });
 
@@ -74,10 +74,10 @@ function doSomething(){
         console.log(body);
     }); 
 }
-let refreshTokenInterval = setInterval(refreshTokenIntervalFunc,3600000);
+var refreshTokenInterval = setInterval(refreshTokenIntervalFunc,3600000);
 function refreshTokenIntervalFunc() {
     if(activated){
-        let jsonObj = {"grant_type":"refresh_token" ,"refresh_token":refreshToken,  "client_id":"de158fa6b9535c57960cbe0de83a15fa",
+        var jsonObj = {"grant_type":"refresh_token" ,"refresh_token":refreshToken,  "client_id":"de158fa6b9535c57960cbe0de83a15fa",
         "client_secret":"9b64d81f37c674e74918afd7d4ade114"};
         request.post({
             url: 'https://api.codechef.com/oauth/token',
@@ -179,15 +179,15 @@ io.on('connection',(socket)=>{
     if(matching.length < 1){
         matching.push(socket.id);
     }else{
-        let roomName = parseInt(Math.random()*10000);
+        var roomName = parseInt(Math.random()*10000);
         rooms.push(roomName);
-        let c1 = matching[matching.length - 1];
+        var c1 = matching[matching.length - 1];
         matching.pop(c1);
-        let c2 = socket.id;
+        var c2 = socket.id;
         io.emit(c1,roomName);
         io.emit(c2,roomName);
-        let nsp = io.of(`/${roomName}`);
-        let myvar = parseInt(Math.random()*10000);
+        var nsp = io.of(`/${roomName}`);
+        var myvar = parseInt(Math.random()*10000);
         nsp.on("connection",(socketwa)=>{
             socketwa.emit("problem",`${myvar}: Print series of even number till 7 with spaces in between.`);
             socketwa.on('get',(oout,aT)=>{
