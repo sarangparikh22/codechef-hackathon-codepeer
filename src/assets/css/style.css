@@ -1,0 +1,17 @@
+body{
+    background-color: #2a324b;
+    color: white;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.centered {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center
+}
