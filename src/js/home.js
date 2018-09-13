@@ -21,8 +21,9 @@ function getUserName(){
     }, function(error, response, body){
         let userName = JSON.parse(body).result.data.content.fullname;
         document.getElementById('loading').style.display = "none";
-        document.getElementById('welcome-message').innerHTML = `Welcome ${userName}`;
+        document.getElementById('welcome-message').innerHTML = `<h3>Welcome, ${userName}</h3>`;
         console.log(userName);
+        document.getElementById('matchButton').style.display = "";
     }) 
 }
 
@@ -30,7 +31,7 @@ let output;
     let sr;
     function match(){
     document.getElementById('matchButton').style.display = "none";
-    document.getElementById('problem').innerHTML = `Matching...`;
+    document.getElementById('problem').innerHTML = `<img src="./assets/img/loader.gif" height="20%" width="20%">`;
     let socket = io();
     let socID;
     socket.on('connect',(test)=>{
