@@ -1,6 +1,7 @@
 const request = require('request');
 var accessToken;
 var refreshToken;
+var points = 0;
 window.addEventListener('load',()=>{
    
     request.get({
@@ -24,6 +25,7 @@ function getUserName(){
         document.getElementById('welcome-message').innerHTML = `<h3>Welcome, ${userName}</h3>`;
         console.log(userName);
         document.getElementById('matchButton').style.display = "";
+        document.getElementById('points').style.display = "";
     }) 
 }
 
@@ -80,7 +82,9 @@ function winnerWinnerChickenDinner(){
     document.getElementById('matchButton').style.display = "";
     document.getElementById('problem').innerHTML = "";
     document.getElementById('ansText').style.display = "none";   
-    document.getElementById('cS').style.display = "none"; 
+    document.getElementById('cS').style.display = "none";
+    points += 10;
+    document.getElementById('points').innerHTML = `Points ${points}`; 
 }
 function loser(){
     alert('You Lost');
