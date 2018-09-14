@@ -64,7 +64,7 @@ var output;
                     console.log('compiling');
                 });
                 sr.on('errorer',(err)=>{
-                    console.log(err);
+                    alert(err);
                 });
             })
             
