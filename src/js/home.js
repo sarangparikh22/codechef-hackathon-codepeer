@@ -51,6 +51,7 @@ var output;
                 })
                 sr.on("endedd",()=>{
                     console.log('Endeddddd');
+                    document.getElementById('loading').style.display = "none";
                     loser();
                     sr.disconnect();
                 });
@@ -58,15 +59,18 @@ var output;
                     console.log(res);
                     if(sr.id = res){
                         console.log('i win');
+                        document.getElementById('loading').style.display = "none";
                         winnerWinnerChickenDinner();
                         sr.disconnect();
                     }
                 });
                 sr.on('compiling',()=>{
                     console.log('compiling');
+                    document.getElementById('loading').style.display = "";
                 });
                 sr.on('errorer',(err)=>{
                     console.log(err);
+                    document.getElementById('loading').style.display = "none";
                 });
             })
             
