@@ -26,7 +26,7 @@ app.get('/getOAuthToken',(req,res) =>{
     grantAccessCode = req.param('code');
     getOAuthToken((r)=>{
         if(r){
-            res.send(`<script>const fs = require('fs');const remote = require('electron').remote;var w = remote.getCurrentWindow();w.close();</script>`);
+            res.send(`<script>const fs = require('fs');const remote = require('electron').remote;let w = remote.getCurrentWindow();w.close();</script>`);
         }
     });
 
@@ -56,7 +56,7 @@ request.post({
     console.log('Refresh Token: ', refreshToken);
     activated = true;
     started = true;
-    doSomething();
+    //doSomething();
     
 });
 }
@@ -140,15 +140,9 @@ function check(link,token,socketwa)
                 socketwa.emit('errorer',{output:result.result.data.output,error:result.result.data.stderr});
             }
         }
-        /*res.render('output.hbs',{
-        language: result.result.data.langName,
-        time: result.result.data.time,
-        memory: result.result.data.memory,
-        output: result.result.data.output,
-        errors: result.result.data.stderr
-        });*/
     });
 }
+
 
 function IDE(code,token,socketwa){
     
