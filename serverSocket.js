@@ -97,7 +97,7 @@ app.get('/getUserName',(req,res)=>{
     request.get({
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': `Bearer ${req.body('accessToken')}`,
+            'Authorization': `Bearer ${req.param('accessToken')}`,
             'Accept': 'application/json'
         },
         url: 'https://api.codechef.com/users/me'
