@@ -51,7 +51,8 @@ var output;
                 })
                 sr.on("endedd",()=>{
                     console.log('Endeddddd');
-                    document.getElementById('loading').style.display = "none";
+                    document.getElementById('cS').value = "Compile and Send";
+                    document.getElementById('cS').disabled = false;
                     loser();
                     sr.disconnect();
                 });
@@ -59,18 +60,22 @@ var output;
                     console.log(res);
                     if(sr.id = res){
                         console.log('i win');
-                        document.getElementById('loading').style.display = "none";
+                        document.getElementById('cS').value = "Compile and Send";
+                        document.getElementById('cS').disabled = false;
                         winnerWinnerChickenDinner();
                         sr.disconnect();
                     }
                 });
                 sr.on('compiling',()=>{
                     console.log('compiling');
-                    document.getElementById('loading').style.display = "";
+                    document.getElementById('cS').value = "Compiling...";
+                    document.getElementById('cS').disabled = true;
+
                 });
                 sr.on('errorer',(err)=>{
                     console.log(err);
-                    document.getElementById('loading').style.display = "none";
+                    document.getElementById('cS').value = "Compile and Send";
+                    document.getElementById('cS').disabled = false;
                 });
             })
             
