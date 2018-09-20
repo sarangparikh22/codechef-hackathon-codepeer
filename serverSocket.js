@@ -38,6 +38,10 @@ app.get('/fetchAccessToken',(req,res)=>{
     started = null;
 })
 function getOAuthToken(callback){
+
+    //used to get the authentication token
+
+
     if(!started){
     var jsonDataObj = {"grant_type": "authorization_code",
     "code": grantAccessCode,
@@ -62,18 +66,7 @@ request.post({
 }
 callback({a:accessToken,b:refreshToken});
 }
-function doSomething(){
-    request.post({
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': `Bearer ${accessToken}`,
-            'Accept': 'application/json'
-        },
-        url: 'https://api.codechef.com/ide/run?sourceCode=console.log(1)&language=JS'
-    }, function(error, response, body){
-        console.log(body);
-    }); 
-}
+
 var refreshTokenInterval = setInterval(refreshTokenIntervalFunc,3600000);
 function refreshTokenIntervalFunc() {
     if(activated){
@@ -94,6 +87,8 @@ function refreshTokenIntervalFunc() {
 
 }
 app.get('/getUserName',(req,res)=>{
+
+    //used to fetch the username of the user from codechef
     request.get({
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -115,6 +110,10 @@ app.get('/isSet',(req,res)=>{
 //////////////////////////////////////////////////////////////////////////////////////////////////
 function check(link,token,socketwa)
 {
+    //This function is used to check the result of a compiled code
+    //We use the link given by the compile api request to check whether the code compiled 
+    //successfully and the output is correct and if correct we declare the winner
+    
     var options3 = { method: 'GET',
     url: 'https://api.codechef.com/ide/status',
     qs: { link: `${link}` },
@@ -127,6 +126,7 @@ function check(link,token,socketwa)
         result = JSON.parse(result);
         if(result.result.data.memory==0){
             socketwa.emit('compiling');
+            //if the code is not compiled we send the request again after a inteterval of 2 seconds
             setTimeout(check,2000,link,token,socketwa);
         }
         else{
@@ -145,9 +145,12 @@ function check(link,token,socketwa)
 
 
 function IDE(code,token,socketwa){
-    
+    //this function is called once the user request the code to compile
+    //we send the code to codechef with a api request
+    //and the link in the response is send checkc function
     
 
+    //request is setup
     var options2 = { method: 'POST',
     url: 'https://api.codechef.com/ide/run',
     headers: 
@@ -156,14 +159,16 @@ function IDE(code,token,socketwa){
     
     formData: { sourceCode: `${code}`, language: 'PYPY', input: '' } 
   };
+  
 
   request(options2, function (error, response, body) {
     if (error) throw new Error(error);
     console.log(body);
     body = JSON.parse(body);
     console.log(body.result.data.link);
+    //the link is passed to the check function after 2 seconds
     setTimeout(check,2000,body.result.data.link,token,socketwa);
-    //check(body.result.data.link);
+    
     
   });
 }
