@@ -108,6 +108,29 @@ app.get('/isSet',(req,res)=>{
     }
 })
 //////////////////////////////////////////////////////////////////////////////////////////////////
+function fetchProblem(token)
+{
+    //This function is used to fetch problem
+    
+    var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://api.codechef.com/contests/OCT17/problems/PERFCONT',
+  headers: 
+   { 'Postman-Token': '84fb112b-8c06-4e86-adab-35bf98a287d4',
+     'Cache-Control': 'no-cache',
+     Authorization: `Bearer ${token}` } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+}
+
+
+
+
 function check(link,token,socketwa)
 {
     //This function is used to check the result of a compiled code
