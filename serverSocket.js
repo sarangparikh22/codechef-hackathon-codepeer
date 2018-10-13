@@ -47,7 +47,7 @@ function getOAuthToken(callback) {
       code: grantAccessCode,
       client_id: "de158fa6b9535c57960cbe0de83a15fa",
       client_secret: "9b64d81f37c674e74918afd7d4ade114",
-      redirect_uri: "http://149.129.145.219:3000/getOAuthToken"
+      redirect_uri: "https://149.129.145.219:3000/getOAuthToken"
     };
     request.post(
       {

@@ -24,7 +24,7 @@ function checkForIsSet(callback) {
 var checkLoginInterval = setInterval(checkForIsSet, 400);
 var codechefLogin = () => {
   window.open(
-    `https://api.codechef.com/oauth/authorize?response_type=code&client_id=de158fa6b9535c57960cbe0de83a15fa&state=xyz&redirect_uri=http://149.129.136.231:3000/getOAuthToken`
+    `https://api.codechef.com/oauth/authorize?response_type=code&client_id=de158fa6b9535c57960cbe0de83a15fa&state=xyz&redirect_uri=http://149.129.145.219:3000/getOAuthToken`
   );
   //checkForIsSet();
 };
