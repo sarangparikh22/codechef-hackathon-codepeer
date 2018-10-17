@@ -22,7 +22,7 @@ var activated;
 var started;
 
 app.get("/getOAuthToken", (req, res) => {
-  console.log("Grant Access Code", req.param("code"));
+  //console.log("Grant Access Code", req.param("code"));
   grantAccessCode = req.param("code");
   getOAuthToken(r => {
     if (r) {
@@ -56,11 +56,11 @@ function getOAuthToken(callback) {
         json: true
       },
       function(error, response, body) {
-        console.log(body.result.data.access_token);
+        //console.log(body.result.data.access_token);
         accessToken = body.result.data.access_token;
         refreshToken = body.result.data.refresh_token;
-        console.log("Access Token: ", accessToken);
-        console.log("Refresh Token: ", refreshToken);
+        //console.log("Access Token: ", accessToken);
+        //console.log("Refresh Token: ", refreshToken);
         activated = true;
         started = true;
         //doSomething();
@@ -86,11 +86,11 @@ function refreshTokenIntervalFunc() {
         json: true
       },
       function(error, response, body) {
-        console.log(body.result.data.access_token);
+        //console.log(body.result.data.access_token);
         accessToken = body.result.data.access_token;
         refreshToken = body.result.data.refresh_token;
-        console.log("Access Token: ", accessToken);
-        console.log("Refresh Token: ", refreshToken);
+        //console.log("Access Token: ", accessToken);
+        //console.log("Refresh Token: ", refreshToken);
       }
     );
   }
@@ -137,7 +137,7 @@ function fetchProblem(token) {
   request(options, function(error, response, body) {
     if (error) throw new Error(error);
 
-    console.log(body);
+    //console.log(body);
   });
 }
 
@@ -156,7 +156,7 @@ function check(link, token, socketwa) {
   };
   request(options3, function(error, response, result) {
     if (error) throw new Error(error);
-    console.log(result);
+    //console.log(result);
     result = JSON.parse(result);
     if (result.result.data.memory == 0) {
       socketwa.emit("compiling");
@@ -195,16 +195,16 @@ function IDE(code, token, socketwa) {
 
   request(options2, function(error, response, body) {
     if (error) throw new Error(error);
-    console.log(body);
+    //console.log(body);
     body = JSON.parse(body);
-    console.log(body.result.data.link);
+    //console.log(body.result.data.link);
     //the link is passed to the check function after 2 seconds
     setTimeout(check, 2000, body.result.data.link, token, socketwa);
   });
 }
 
 io.on("connection", socket => {
-  console.log("Connected Client", socket.id);
+  //console.log("Connected Client", socket.id);
   if (matching.length < 1) {
     matching.push(socket.id);
   } else {
@@ -223,13 +223,13 @@ io.on("connection", socket => {
         `${myvar}: Print series of even number till 7 with spaces in between.`
       );
       socketwa.on("get", (oout, aT) => {
-        console.log(oout);
+        //console.log(oout);
         IDE(oout, aT, socketwa);
       });
     });
   }
   socket.on("disconnect", () => {
-    console.log("Disconnected", socket.id);
+    //console.log("Disconnected", socket.id);
   });
 });
 
